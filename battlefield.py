@@ -1,8 +1,16 @@
+from tkinter import *
 from fleet import robot_fleet
 from herd import dino_squad
 import time
 import fleet
 import herd
+
+root = Tk()
+
+
+
+
+
 
 
 class Battlefield:
@@ -65,24 +73,43 @@ def robot_turn():
     print(f'Dino 3 Health ={dino_squad.dinosaurs[2].health}')
     print('')
 
-def to_battle():
-    print("")
-    print("")
-    print("Dinosaur VS Robot Battle Simulator")
-    print("")
-    print("This will simulate a turn based battle between 3 dinosaurs and 3 robots")
-    input("Press enter to begin")
-    print("")
-    print("")
-    while robot_fleet.robots[2].health > 0 and dino_squad.dinosaurs[2].health > 0:
-        user_input = input("Enter '1' to have the Dinos attack, or '2' to make the robots attack")
-        if user_input == '1':
-            dino_turn()
-        elif user_input == '2':
-            robot_turn()
-        else:
-            print("invalid input")
-        if robot_fleet.robots[2].health <= 0:
-            print("The dinosaurs deliver a killing blow to the final robot! Dinos Win!!")
-        elif dino_squad.dinosaurs[2].health <= 0:
-            print("The robots deliver a killing blow to the final dino! Robots Win!!")
+
+intro = Label(root, text="Dinosaur VS Robot Battle Simulator\n\nThis will simulate a turn based battle between 3 dinosaurs and 3 robots")
+dino_victory_message = Label(root, text="The dinosaurs deliver a killing blow to the final robot! Dinos Win!!")
+robot_victory_message = Label(root, text="The robots deliver a killing blow to the final dino! Robots Win!!")
+
+def attack_with_dino():
+    dino_turn()
+    robot_health.config(text=f'Robot 1 Health: {robot_fleet.robots[0].health}\nRobot 2 Health: {robot_fleet.robots[1].health}\nRobot 3 Health: {robot_fleet.robots[2].health}')
+    if robot_fleet.robots[2].health <= 0:
+        dino_victory_message.grid(row=4, column=1, padx=40, pady=40)
+    elif dino_squad.dinosaurs[2].health <= 0:
+        robot_victory_message.grid(row=4, column=1, padx=40, pady=40)
+
+
+def attack_with_robot():
+    robot_turn()
+    dino_health.config(text=f'Dino 1 Health: {dino_squad.dinosaurs[0].health}\nDino 2 Health: {dino_squad.dinosaurs[1].health}\nDino 3 Health: {dino_squad.dinosaurs[2].health}')
+    if robot_fleet.robots[2].health <= 0:
+        dino_victory_message.grid(row=4, column=1, padx=40, pady=40)
+    elif dino_squad.dinosaurs[2].health <= 0:
+        robot_victory_message.grid(row=4, column=1, padx=40, pady=40)
+
+
+
+
+
+dino_button = Button(root, text="Attack with dino", command=attack_with_dino)
+robot_button = Button(root, text="Attack with Robots", command=attack_with_robot)
+
+intro.grid(row=0, column=1, padx=0, pady=0)
+dino_button.grid(row=3, column=2, padx=40, pady=40)
+robot_button.grid(row=3, column=0, padx=40, pady=40)
+
+robot_health = Label(root, text=f'Robot 1 Health: {robot_fleet.robots[0].health}\nRobot 2 Health: {robot_fleet.robots[1].health}\nRobot 3 Health: {robot_fleet.robots[2].health}')
+dino_health = Label(root, text=f'Dino 1 Health: {dino_squad.dinosaurs[0].health}\nDino 2 Health: {dino_squad.dinosaurs[1].health}\nDino 3 Health: {dino_squad.dinosaurs[2].health}')
+
+robot_health.grid(row=2, column=0, padx=40, pady=40)
+dino_health.grid(row=2, column=2, padx=40, pady=40)
+
+root.mainloop()
