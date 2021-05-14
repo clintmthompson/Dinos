@@ -59,18 +59,29 @@ def robot_turn():
             i += 1
             pass
 
-    print('The robots have attacked!!')
+    print('The Robots have attacked!!')
     print(f'Dino 1 Health ={dino_squad.dinosaurs[0].health}')
     print(f'Dino 2 Health ={dino_squad.dinosaurs[1].health}')
     print(f'Dino 3 Health ={dino_squad.dinosaurs[2].health}')
     print('')
 
 def to_battle():
+    print("")
+    print("")
+    print("Dinosaur VS Robot Battle Simulator")
+    print("")
+    print("This will simulate a turn based battle between 3 dinosaurs and 3 robots")
+    input("Press enter to begin")
+    print("")
+    print("")
     while robot_fleet.robots[2].health > 0 and dino_squad.dinosaurs[2].health > 0:
-        dino_turn()
-        time.sleep(3)
-        robot_turn()
-        time.sleep(3)
+        user_input = input("Enter '1' to have the Dinos attack, or '2' to make the robots attack")
+        if user_input == '1':
+            dino_turn()
+        elif user_input == '2':
+            robot_turn()
+        else:
+            print("invalid input")
         if robot_fleet.robots[2].health <= 0:
             print("The dinosaurs deliver a killing blow to the final robot! Dinos Win!!")
         elif dino_squad.dinosaurs[2].health <= 0:
