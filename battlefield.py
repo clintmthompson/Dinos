@@ -6,11 +6,8 @@ import fleet
 import herd
 
 root = Tk()
-
-
-
-
-
+root.title('Dinos VS Robots')
+root.config(bg='tan')
 
 
 class Battlefield:
@@ -23,10 +20,6 @@ class Battlefield:
     def compile_teams(self, team_robot, team_dino):
         self.fleet = team_robot
         self.herd = team_dino
-
-
-battlefield = Battlefield()
-battlefield.compile_teams(robot_fleet, dino_squad)
 
 
 def dino_turn():
@@ -44,11 +37,6 @@ def dino_turn():
         else:
             i += 1
             pass
-    print('The Dinos have attacked!!')
-    print(f'Robot 1 Health ={robot_fleet.robots[0].health}')
-    print(f'Robot 2 Health ={robot_fleet.robots[1].health}')
-    print(f'Robot 3 Health ={robot_fleet.robots[2].health}')
-    print('')
 
 
 def robot_turn():
@@ -67,16 +55,11 @@ def robot_turn():
             i += 1
             pass
 
-    print('The Robots have attacked!!')
-    print(f'Dino 1 Health ={dino_squad.dinosaurs[0].health}')
-    print(f'Dino 2 Health ={dino_squad.dinosaurs[1].health}')
-    print(f'Dino 3 Health ={dino_squad.dinosaurs[2].health}')
-    print('')
-
 
 intro = Label(root, text="Dinosaur VS Robot Battle Simulator\n\nThis will simulate a turn based battle between 3 dinosaurs and 3 robots")
 dino_victory_message = Label(root, text="The dinosaurs deliver a killing blow to the final robot! Dinos Win!!")
 robot_victory_message = Label(root, text="The robots deliver a killing blow to the final dino! Robots Win!!")
+
 
 def attack_with_dino():
     dino_turn()
@@ -96,10 +79,7 @@ def attack_with_robot():
         robot_victory_message.grid(row=4, column=1, padx=40, pady=40)
 
 
-
-
-
-dino_button = Button(root, text="Attack with dino", command=attack_with_dino)
+dino_button = Button(root, text="Attack with Dino", command=attack_with_dino)
 robot_button = Button(root, text="Attack with Robots", command=attack_with_robot)
 
 intro.grid(row=0, column=1, padx=0, pady=0)
