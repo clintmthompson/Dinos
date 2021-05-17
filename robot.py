@@ -2,7 +2,7 @@
 from weapon import Weapon
 
 bot_weapon = Weapon()
-bot_weapon.get_weapon('knife', 10)
+bot_weapon.get_weapon('shotgun', 15)
 
 
 class Robot:
